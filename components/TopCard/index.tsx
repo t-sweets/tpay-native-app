@@ -12,7 +12,11 @@ function TopCard({ balance }: TopCardProps) {
       imageStyle={{ borderRadius: 10 }}
       source={require("../../assets/t-pay-card.png")}
     >
-      <Text style={styles.titleHeader}>{"あなたの残高"}</Text>
+      <Text style={styles.title}>{"あなたの残高"}</Text>
+      <View style={styles.balanceView}>
+        <Text style={styles.balanceText}>{balance}</Text>
+        <Text style={styles.balanceUnit}>{"円"}</Text>
+      </View>
     </ImageBackground>
   );
 }
@@ -34,10 +38,27 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     elevation: 2
   },
-  titleHeader: {
+  title: {
     color: "gray",
     fontSize: 22,
     margin: 20
+  },
+  balanceView: {
+    flexDirection: "row",
+    alignItems: "center",
+
+    height: 100
+  },
+  balanceText: {
+    fontSize: 45,
+    fontWeight: "500",
+    lineHeight: 120,
+    margin: 2
+  },
+  balanceUnit: {
+    fontSize: 18,
+    margin: 2,
+    lineHeight: 135
   }
 });
 
