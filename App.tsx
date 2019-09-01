@@ -1,25 +1,18 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Router, Scene } from "react-native-router-flux";
-import SampleA from "./pages/SampleA";
 import SampleB from "./pages/SampleB";
+import Home from "./pages/Home";
 
 export default function App() {
   return (
     <Router>
-      <Scene key="root">
-        <Scene key="sampleA" initial component={SampleA} />
-        <Scene key="sampleB" component={SampleB} />
+      <Scene key="root" hideNavBar>
+        <Scene key="tabbar" tabs>
+          <Scene key="sampleA" hideNavBar initial component={Home} />
+          <Scene key="sampleB" hideNavBar component={SampleB} />
+        </Scene>
       </Scene>
     </Router>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
