@@ -1,11 +1,17 @@
-import React from "react";
+import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Router, Scene } from "react-native-router-flux";
+import SampleA from "./pages/SampleA";
+import SampleB from "./pages/SampleB";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <Router>
+      <Scene key="root">
+        <Scene key="sampleA" initial component={SampleA} />
+        <Scene key="sampleB" component={SampleB} />
+      </Scene>
+    </Router>
   );
 }
 
