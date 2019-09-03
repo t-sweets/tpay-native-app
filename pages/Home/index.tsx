@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, ImageBackground } from "react-native";
 import TopCard from "../../components/TopCard";
+import PurchaseList from "../../components/PurchaseList";
 
 function Home() {
   return (
@@ -12,7 +13,10 @@ function Home() {
         <View style={styles.topCard}>
           <TopCard balance={200} />
         </View>
-        <Text>HOME画面</Text>
+        <Text style={styles.historyHeader}>最近のお支払い</Text>
+        <View style={styles.history}>
+          <PurchaseList />
+        </View>
       </View>
     </ImageBackground>
   );
@@ -20,7 +24,6 @@ function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "column",
     alignItems: "center"
   },
@@ -30,7 +33,20 @@ const styles = StyleSheet.create({
   },
   topCard: {
     marginTop: 65,
-    marginBottom: 40
+    marginBottom: 55
+  },
+  history: {
+    // marginHorizontal: 10,
+    alignItems: "center",
+    flexDirection: "column"
+  },
+  historyHeader: {
+    color: "#666",
+    fontSize: 18,
+    marginHorizontal: 30,
+    marginBottom: 10,
+    textAlign: "left",
+    marginRight: "auto"
   }
 });
 

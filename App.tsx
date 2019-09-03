@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import { Router, Scene } from "react-native-router-flux";
 import SampleB from "./pages/SampleB";
 import Home from "./pages/Home";

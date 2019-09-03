@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, StyleSheet, ImageBackground, View } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  ImageBackground,
+  View,
+  Dimensions
+} from "react-native";
 
 interface TopCardProps {
   balance: number;
@@ -23,9 +29,8 @@ function TopCard({ balance }: TopCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    width: 360,
-    height: 210,
-    flex: 1,
+    width: Dimensions.get("screen").width * 0.55 * 1.618,
+    height: Dimensions.get("screen").width * 0.55,
     flexDirection: "column",
     alignItems: "center",
 
@@ -41,18 +46,16 @@ const styles = StyleSheet.create({
   title: {
     color: "gray",
     fontSize: 22,
-    margin: 20
+    marginTop: 20
   },
   balanceView: {
     flexDirection: "row",
-    alignItems: "center",
-
-    height: 100
+    alignItems: "center"
   },
   balanceText: {
     fontSize: 45,
     fontWeight: "500",
-    lineHeight: 120,
+    lineHeight: 140,
     margin: 2
   },
   balanceUnit: {
