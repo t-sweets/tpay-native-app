@@ -6,7 +6,15 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "storybook": "start-storybook -p 7007"
+    "prestorybook": "rnstl",
+    "storybook": "start-storybook -p 7007",
+    "storytest:ios": "react-native run-ios"
+  },
+  "config": {
+    "react-native-storybook-loader": {
+      "pattern": "**/*.stories.tsx",
+      "outputFile": "./storybook/storyLoader.js"
+    }
   },
   "dependencies": {
     "expo": "^34.0.1",
@@ -28,8 +36,8 @@
     "@types/react-native": "^0.57.65",
     "babel-loader": "^8.0.6",
     "babel-preset-expo": "^6.0.0",
-    "react-native-storybook-loader": "^1.8.1",
     "react-native-router-flux": "^4.0.6",
+    "react-native-storybook-loader": "^1.8.1",
     "react-native-vector-icons": "^6.6.0",
     "typescript": "^3.4.5"
   },
