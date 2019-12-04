@@ -7,14 +7,15 @@ import {
   Dimensions
 } from "react-native";
 
+import styled from "styled-components";
+
 interface TopCardProps {
   balance: number;
 }
 
 function TopCard({ balance }: TopCardProps) {
   return (
-    <ImageBackground
-      style={styles.card}
+    <CardView
       imageStyle={{ borderRadius: 10 }}
       source={require("../../assets/t-pay-card.png")}
     >
@@ -23,26 +24,20 @@ function TopCard({ balance }: TopCardProps) {
         <Text style={styles.balanceText}>{balance}</Text>
         <Text style={styles.balanceUnit}>{"円"}</Text>
       </View>
-    </ImageBackground>
+    </CardView>
   );
 }
 
-const styles = StyleSheet.create({
-  card: {
-    width: Dimensions.get("screen").width * 0.55 * 1.618,
-    height: Dimensions.get("screen").width * 0.55,
-    flexDirection: "column",
-    alignItems: "center",
+const CardView = styled.ImageBackground`
+  width: ${Dimensions.get("screen").width * 0.55 * 1.618};
+  height: ${Dimensions.get("screen").width * 0.55};
+  flex-direction: column;
+  align-items: center;
 
-    shadowColor: "#ccc",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowRadius: 3,
-    shadowOpacity: 1,
-    elevation: 2
-  },
+  box-shadow: 0px 0px 10px #ccc;
+`;
+
+const styles = StyleSheet.create({
   title: {
     color: "gray",
     fontSize: 22,
