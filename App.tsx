@@ -4,7 +4,7 @@ import SampleB from "./pages/SampleB";
 import Home from "./pages/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const STORYBOOK_START = true;
+const STORYBOOK_START = false;
 
 function App() {
   return (

@@ -3,24 +3,43 @@ import { Text, View, StyleSheet, ImageBackground } from "react-native";
 import TopCard from "../../components/TopCard";
 import PurchaseList from "../../components/PurchaseList";
 
+import styled from "styled-components/native";
+
 function Home() {
   return (
-    <ImageBackground
-      source={require("../../assets/background.png")}
-      style={styles.background}
-    >
-      <View style={styles.container}>
-        <View style={styles.topCard}>
+    <HomeBackground source={require("../../assets/background.png")}>
+      <HomeContainer>
+        <CardContainer>
           <TopCard balance={200} />
-        </View>
-        <Text style={styles.historyHeader}>最近のお支払い</Text>
+        </CardContainer>
+        <HistoryHeader>最近のお支払い</HistoryHeader>
         <View style={styles.history}>
           <PurchaseList />
         </View>
-      </View>
-    </ImageBackground>
+      </HomeContainer>
+    </HomeBackground>
   );
 }
+
+const HomeBackground = styled.ImageBackground`
+  width: 100%;
+  height: 100%;
+`;
+
+const HomeContainer = styled.View`
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CardContainer = styled.View`
+  margin-top: 65;
+  margin-bottom: 55;
+`;
+
+const HistoryHeader = styled.Text`
+  flex-direction: column;
+  align-items: center;
+`;
 
 const styles = StyleSheet.create({
   container: {
