@@ -1,21 +1,32 @@
 import React from "react";
 import { Dimensions } from "react-native";
-import Status, { StatusType } from "./status";
+
+import { ShopType, PurchaseType } from "models/typs";
+import { formatDateYMDByLang } from "app/lib/utils";
 
 import styled from "styled-components/native";
 
-function PurchaseList() {
+export interface PurcahseItemProps {
+  purchase: PurchaseType;
+}
+
+function PurchaseList({ purchase }: PurcahseItemProps) {
+  const dateStr = formatDateYMDByLang(purchase.timestamp);
+
   return (
     <ListContainer>
       <ShopContainer>
         <ShopIcon source={require("../../assets/icon.png")} />
         <PurchaseContents>
-          <PurchaseDate allowFontScaling={false}>2019年10月24日</PurchaseDate>
-          <PayeeName allowFontScaling={false}>hogeShopに支払い</PayeeName>
+          <PurchaseDate allowFontScaling={false}>{dateStr}</PurchaseDate>
+          <PayeeName allowFontScaling={false}>
+            {purchase.shop.name}に支払い
+          </PayeeName>
         </PurchaseContents>
       </ShopContainer>
       <Amount allowFontScaling={false}>
-        300<Unit allowFontScaling={false}>円</Unit>
+        {purchase.amount}
+        <Unit allowFontScaling={false}>円</Unit>
       </Amount>
     </ListContainer>
   );

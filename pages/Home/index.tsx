@@ -1,11 +1,20 @@
 import React from "react";
-import { Text, View, StyleSheet, ImageBackground } from "react-native";
 import TopCard from "../../components/TopCard";
 import PurchaseList from "../../components/PurchaseList";
 
 import styled from "styled-components/native";
+import { PurchaseType, HistoryType } from "app/models/typs";
 
 function Home() {
+  const purchase: PurchaseType = {
+    shop: {
+      name: "hogehoge"
+    },
+    type: HistoryType.Paid,
+    amount: 1000,
+    timestamp: new Date()
+  };
+
   return (
     <HomeBackground source={require("../../assets/background.png")}>
       <HomeContainer>
@@ -14,7 +23,7 @@ function Home() {
         </CardContainer>
         <HistoryHeader>最近のお支払い</HistoryHeader>
         <HistoryContainer>
-          <PurchaseList />
+          <PurchaseList purchase={purchase} />
         </HistoryContainer>
       </HomeContainer>
     </HomeBackground>

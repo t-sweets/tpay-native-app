@@ -7,6 +7,7 @@ export interface PurchaseType {
   shop: ShopType;
   type: HistoryType;
   amount: number;
+  timestamp: Date;
 }
 
 export interface ShopType {
