@@ -13,9 +13,9 @@ function Home() {
           <TopCard balance={200} />
         </CardContainer>
         <HistoryHeader>最近のお支払い</HistoryHeader>
-        <View style={styles.history}>
+        <HistoryContainer>
           <PurchaseList />
-        </View>
+        </HistoryContainer>
       </HomeContainer>
     </HomeBackground>
   );
@@ -36,37 +36,17 @@ const CardContainer = styled.View`
   margin-bottom: 55;
 `;
 
-const HistoryHeader = styled.Text`
+const HistoryContainer = styled.View`
   flex-direction: column;
   align-items: center;
+  margin: 0px 15px;
 `;
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  background: {
-    width: "100%",
-    height: "100%"
-  },
-  topCard: {
-    marginTop: 65,
-    marginBottom: 55
-  },
-  history: {
-    // marginHorizontal: 10,
-    alignItems: "center",
-    flexDirection: "column"
-  },
-  historyHeader: {
-    color: "#666",
-    fontSize: 18,
-    marginHorizontal: 30,
-    marginBottom: 10,
-    textAlign: "left",
-    marginRight: "auto"
-  }
-});
+const HistoryHeader = styled.Text`
+  color: #666;
+  font-size: 16;
+  margin: 5px 25px;
+  align-self: flex-start;
+`;
 
 export default Home;
