@@ -1,8 +1,7 @@
 import React from "react";
 import { Dimensions } from "react-native";
 
-import { ShopType, PurchaseType } from "models/typs";
-import { formatDateYMDByLang } from "app/lib/utils";
+import { PurchaseType } from "app/models/Purchase";
 
 import styled from "styled-components/native";
 import Overview from "./Overview";
@@ -24,7 +23,10 @@ function PurchaseList({ purchase }: PurcahseItemProps) {
     <ListContainer onPress={pushDetail}>
       <ShopContainer>
         <ShopIcon source={require("../../assets/icon.png")} />
-        <Overview shopName={purchase.shop.name} date={purchase.timestamp} />
+        <Overview
+          shopName={purchase.merchant.name}
+          date={purchase.createdTime}
+        />
       </ShopContainer>
       <Amount price={purchase.amount}></Amount>
     </ListContainer>

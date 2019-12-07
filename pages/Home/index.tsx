@@ -3,18 +3,20 @@ import TopCard from "../../components/TopCard";
 import PurchaseList from "../../components/PurchaseList";
 
 import styled from "styled-components/native";
-import { PurchaseType, PayStatusType } from "app/models/typs";
 import Wallpeper from "app/components/Wallpaper";
+
+import { PurchaseType, HistoryType } from "app/models/Purchase";
 
 function Home() {
   const purchase: PurchaseType = {
-    id: "aaaaaa",
-    shop: {
+    id: "hoge",
+    merchant: {
       name: "hogehoge"
     },
-    type: PayStatusType.Paid,
     amount: 1000,
-    timestamp: new Date()
+    type: HistoryType.Paid,
+    deleted: false,
+    createdTime: new Date()
   };
 
   return (
