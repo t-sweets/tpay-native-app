@@ -15,21 +15,23 @@ import { PurchaseType, HistoryType } from "app/models/Purchase";
 import { thunkActionCreators } from "app/middleware/thunkAction";
 import { RootState } from "app/modules";
 import { ScrollView, RefreshControl } from "react-native";
+import { RequestStatus } from "app/modules/Transactions/type";
 
 function Home() {
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const transactions = useSelector(
-    (state: Pick<RootState, "transactions">) => state.transactions.transactions
+  const { data: transactions, status } = useSelector(
+    (state: Pick<RootState, "transactions">) => state.transactions
   );
   const dispatch = useDispatch();
 
   const onRefresh = useCallback(() => {
-    setRefreshing(true);
     dispatch(thunkActionCreators.fetchTransactions());
-    // TODO: state管理する
-    setRefreshing(false);
   }, [refreshing]);
+
+  useEffect(() => {
+    setRefreshing(status === RequestStatus.Requesting);
+  }, [status]);
 
   useEffect(() => {
     dispatch(thunkActionCreators.fetchTransactions());

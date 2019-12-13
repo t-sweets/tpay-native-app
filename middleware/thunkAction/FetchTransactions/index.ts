@@ -20,13 +20,15 @@ export const fetchTransactions = (): ThunkActionType => async (
     "token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMDFEOTRWSFdNSDhLNUFFNzA0S0hWVzBBMkIiLCJ1c2VybmFtZSI6InNobyIsImV4cCI6MTU3NjA3OTIxMSwiZW1haWwiOiJzc2tteTEwMjQueUBnbWFpbC5jb20ifQ.ejxUAPKmgJhmjdHy6FcpdCARQfP-sJ4krBGVeO9dhz8"
   );
   try {
+    dispatch(actionCreator.prepareGetTransactions());
+
     const apiData = await getTransactions(client);
     const transactions = apiData.map(rowData =>
       types.applyApiDataToPurchaseType(rowData)
     );
 
     dispatch(
-      actionCreator.getTransactionsCreator({
+      actionCreator.setTransactionsCreator({
         transactions: transactions.reverse()
       })
     );
