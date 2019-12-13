@@ -25,7 +25,11 @@ export const fetchTransactions = (): ThunkActionType => async (
       types.applyApiDataToPurchaseType(rowData)
     );
 
-    dispatch(actionCreator.getTransactionsCreator({ transactions }));
+    dispatch(
+      actionCreator.getTransactionsCreator({
+        transactions: transactions.reverse()
+      })
+    );
   } catch (e) {
     apiErrorAlert(e.toString());
   }
