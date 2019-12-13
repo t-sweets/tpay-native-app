@@ -1,7 +1,12 @@
 import React from "react";
 import TopCard from "../../components/TopCard";
 import PurchaseList from "../../components/PurchaseList";
-import { useEffect, useDispatch, useSelector } from "app/lib/hooks";
+import {
+  useEffect,
+  useDispatch,
+  useSelector,
+  useCallback
+} from "app/lib/hooks";
 
 import styled from "styled-components/native";
 import Wallpeper from "app/components/Wallpaper";
@@ -9,12 +14,22 @@ import Wallpeper from "app/components/Wallpaper";
 import { PurchaseType, HistoryType } from "app/models/Purchase";
 import { thunkActionCreators } from "app/middleware/thunkAction";
 import { RootState } from "app/modules";
+import { ScrollView, RefreshControl } from "react-native";
 
 function Home() {
+  const [refreshing, setRefreshing] = React.useState(false);
+
   const transactions = useSelector(
     (state: Pick<RootState, "transactions">) => state.transactions.transactions
   );
   const dispatch = useDispatch();
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    dispatch(thunkActionCreators.fetchTransactions());
+    // TODO: state管理する
+    setRefreshing(false);
+  }, [refreshing]);
 
   useEffect(() => {
     dispatch(thunkActionCreators.fetchTransactions());
@@ -22,19 +37,25 @@ function Home() {
 
   return (
     <Wallpeper>
-      <HomeContainer>
-        <CardContainer>
-          <TopCard balance={200} />
-        </CardContainer>
-        {transactions.length > 0 && (
-          <>
-            <HistoryHeader>最近のお支払い</HistoryHeader>
-            <HistoryContainer>
-              <PurchaseList purchase={transactions[0]} />
-            </HistoryContainer>
-          </>
-        )}
-      </HomeContainer>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <HomeContainer>
+          <CardContainer>
+            <TopCard balance={200} />
+          </CardContainer>
+          {transactions.length > 0 && (
+            <>
+              <HistoryHeader>最近のお支払い</HistoryHeader>
+              <HistoryContainer>
+                <PurchaseList purchase={transactions[0]} />
+              </HistoryContainer>
+            </>
+          )}
+        </HomeContainer>
+      </ScrollView>
     </Wallpeper>
   );
 }
