@@ -5,24 +5,25 @@ import Home from "./pages/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PaymentDetail from "./pages/PaymentDetail";
 
-import { createStore, applyMiddleware } from "redux";
-import { rootReducer } from "./modules";
-import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import { rootReducer } from "app/modules";
+import { Provider, connect } from "react-redux";
 import thunk from "redux-thunk";
 
 const STORYBOOK_START = false;
-const composeEnhancers =
-  window.__REDUX_DEVTOOLS_EXTENSION_ && window.__REDUX_DEVTOOKS_EXTENTION();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const RouterWithRedux = connect()(Router);
+
 const store = createStore(
   rootReducer,
-  composeEnhancers,
-  applyMiddleware(thunk)
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <RouterWithRedux>
         <Stack key="inner">
           <Scene key="root" hideNavBar initial>
             <Scene
@@ -32,14 +33,21 @@ function App() {
               activeTintColor="#04a3e4"
             >
               <Scene
-                key="home"
-                iconName="home"
-                icon={HomeIcon}
-                hideNavBar
-                initial
-                component={Home}
-              />
-              <Scene key="sampleB" hideNavBar component={SampleB} />
+                key="tabbar"
+                tabs
+                showLabel={false}
+                activeTintColor="#04a3e4"
+              >
+                <Scene
+                  key="home"
+                  iconName="home"
+                  icon={HomeIcon}
+                  hideNavBar
+                  initial
+                  component={Home}
+                />
+                <Scene key="sampleB" hideNavBar component={SampleB} />
+              </Scene>
             </Scene>
           </Scene>
           <Scene
@@ -49,7 +57,7 @@ function App() {
             back
           />
         </Stack>
-      </Router>
+      </RouterWithRedux>
     </Provider>
   );
 }

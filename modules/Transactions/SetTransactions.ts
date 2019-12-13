@@ -1,7 +1,7 @@
 import { TransactionsType } from "./type";
 
 interface Payload {
-  transaction: TransactionsType | null;
+  transactions: TransactionsType | null;
 }
 
 export interface SetTransactionsAction {

@@ -21,11 +21,11 @@ export const fetchTransactions = (): ThunkActionType => async (
   );
   try {
     const apiData = await getTransactions(client);
-    const transaction = apiData.map(rowData =>
+    const transactions = apiData.map(rowData =>
       types.applyApiDataToPurchaseType(rowData)
     );
 
-    dispatch(actionCreator.getTransactionsCreator({ transaction }));
+    dispatch(actionCreator.getTransactionsCreator({ transactions }));
   } catch (e) {
     apiErrorAlert(e.toString());
   }

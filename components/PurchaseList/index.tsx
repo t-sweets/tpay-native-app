@@ -7,6 +7,7 @@ import styled from "styled-components/native";
 import Overview from "./Overview";
 import Amount from "./Amount";
 import { Actions } from "react-native-router-flux";
+import { adjustImagePath } from "app/lib/utils";
 
 export interface PurcahseItemProps {
   purchase: PurchaseType;
@@ -18,11 +19,12 @@ function PurchaseList({ purchase }: PurcahseItemProps) {
       uuid: purchase.id
     });
   };
+  const shopIconPath = adjustImagePath(purchase.merchant.icon.image);
 
   return (
     <ListContainer onPress={pushDetail}>
       <ShopContainer>
-        <ShopIcon source={require("../../assets/icon.png")} />
+        <ShopIcon source={shopIconPath} />
         <Overview
           shopName={purchase.merchant.name}
           date={purchase.createdTime}

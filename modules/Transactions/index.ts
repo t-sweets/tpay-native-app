@@ -18,7 +18,7 @@ export function reducer(state: State = initialState, action: Action) {
   switch (action.type) {
     case "SET_TRANSACTIONS":
       return {
-        transactions: action.payload
+        transactions: action.payload.transactions
       };
     default:
       return state;
