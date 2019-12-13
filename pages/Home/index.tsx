@@ -1,23 +1,24 @@
 import React from "react";
 import TopCard from "../../components/TopCard";
 import PurchaseList from "../../components/PurchaseList";
+import { useEffect, useDispatch, useSelector } from "app/lib/hooks";
 
 import styled from "styled-components/native";
 import Wallpeper from "app/components/Wallpaper";
 
 import { PurchaseType, HistoryType } from "app/models/Purchase";
+import { thunkActionCreators } from "app/middleware/thunkAction";
+import { RootState } from "app/modules";
 
 function Home() {
-  const purchase: PurchaseType = {
-    id: "hoge",
-    merchant: {
-      name: "hogehoge"
-    },
-    amount: 1000,
-    type: HistoryType.Paid,
-    deleted: false,
-    createdTime: new Date()
-  };
+  const transactions = useSelector(
+    (state: Pick<RootState, "transactions">) => state.transactions.transactions
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(thunkActionCreators.fetchTransactions());
+  }, []);
 
   return (
     <Wallpeper>
@@ -25,10 +26,14 @@ function Home() {
         <CardContainer>
           <TopCard balance={200} />
         </CardContainer>
-        <HistoryHeader>最近のお支払い</HistoryHeader>
-        <HistoryContainer>
-          <PurchaseList purchase={purchase} />
-        </HistoryContainer>
+        {transactions.length > 0 && (
+          <>
+            <HistoryHeader>最近のお支払い</HistoryHeader>
+            <HistoryContainer>
+              <PurchaseList purchase={transactions[0]} />
+            </HistoryContainer>
+          </>
+        )}
       </HomeContainer>
     </Wallpeper>
   );

@@ -1,10 +1,10 @@
 import {
-  GetTransactionsAction,
-  getTransactionsCreator
-} from "./GetTransactions";
+  SetTransactionsAction,
+  setTransactionsCreator
+} from "./SetTransactions";
 import { TransactionsType } from "./type";
 
-export type Action = GetTransactionsAction;
+export type Action = SetTransactionsAction;
 
 export type State = {
   transactions: TransactionsType;
@@ -16,7 +16,7 @@ export const initialState = {
 
 export function reducer(state: State = initialState, action: Action) {
   switch (action.type) {
-    case "GET_TRANSACTIONS":
+    case "SET_TRANSACTIONS":
       return {
         transactions: action.payload
       };
@@ -26,5 +26,5 @@ export function reducer(state: State = initialState, action: Action) {
 }
 
 export const actionCreators = {
-  getTransactionsCreator
+  getTransactionsCreator: setTransactionsCreator
 };

@@ -98,7 +98,7 @@ export default class ApiClientImpl implements ApiClient {
         ...fetchOptions?.headers
       }
     });
-    return await response.json();
+    return this.parseResponse<T>(await response.json());
   }
 
   public async post<T>(
@@ -141,7 +141,8 @@ export default class ApiClientImpl implements ApiClient {
       },
       ...body
     });
-    return await response.json();
+
+    return this.parseResponse<T>(await response.json());
   }
 
   public fetch(
@@ -169,6 +170,10 @@ export default class ApiClientImpl implements ApiClient {
     return this.internalFetch(path, params, queryParams, fetchOptions);
   }
 
+  private parseResponse<T>(apiResponse: T) {
+    return apiResponse;
+  }
+
   private async internalFetch(
     path: string,
     params: types.RequestQuery,
@@ -184,9 +189,10 @@ export default class ApiClientImpl implements ApiClient {
     const requestPath = compiled(params);
 
     const needsToken =
-      fetchOptions &&
-      (fetchOptions.method || "").toUpperCase() === "POST" &&
-      isSameOrigin(requestPath);
+      (fetchOptions &&
+        (fetchOptions.method || "").toUpperCase() === "POST" &&
+        isSameOrigin(requestPath)) ||
+      this.token;
     const needsBody =
       typeof queryString !== "string" && queryString !== undefined;
 
@@ -212,13 +218,16 @@ export default class ApiClientImpl implements ApiClient {
     requestPath: string,
     fetchOptions?: ClientRequestInit
   ) {
-    const response = await fetch(requestPath, {
-      credentials: "same-origin",
-      ...(fetchOptions as RequestInit)
-    });
+    const response = await fetch(
+      "https://tpay.t-lab.cs.teu.ac.jp" + requestPath,
+      {
+        mode: "cors",
+        ...(fetchOptions as RequestInit)
+      }
+    );
     if (!response.ok) {
       try {
-        await response.json();
+        this.parseResponse(await response.json());
       } catch (e) {
         if (e instanceof ApiError) {
           throw new HttpError(response.status, response.statusText, e);

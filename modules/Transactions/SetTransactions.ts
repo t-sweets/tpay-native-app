@@ -4,16 +4,16 @@ interface Payload {
   transaction: TransactionsType | null;
 }
 
-export interface GetTransactionsAction {
-  type: "GET_TRANSACTIONS";
+export interface SetTransactionsAction {
+  type: "SET_TRANSACTIONS";
   payload: Payload;
 }
 
-export function getTransactionsCreator(
+export function setTransactionsCreator(
   payload: Payload
-): GetTransactionsAction {
+): SetTransactionsAction {
   return {
     payload,
-    type: "GET_TRANSACTIONS"
+    type: "SET_TRANSACTIONS"
   };
 }

@@ -1,7 +1,7 @@
 import { MerchantType } from "./Marchant";
 
 export enum HistoryType {
-  Paid = "Paid", // 支払い
+  Checkout = "checkout", // 支払い
   Cancel = "Cancel", // 返金
   Deposit = "deposit" // チャージ
 }

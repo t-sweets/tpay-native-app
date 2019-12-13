@@ -1,4 +1,5 @@
 import { BaseError } from "make-error";
+import { Alert } from "react-native";
 
 export class ApiError<T = unknown> extends BaseError {
   readonly name = "PixivApiError";
@@ -37,3 +38,12 @@ export class RequestError extends BaseError {
     super(`Status ${status}: ${method} ${url}${extra ? ` (${extra})` : ""}`);
   }
 }
+
+export const apiErrorAlert = (message: string) => {
+  Alert.alert(
+    "API Fetch Error",
+    message,
+    [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+    { cancelable: false }
+  );
+};
