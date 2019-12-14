@@ -4,6 +4,7 @@ export enum HistoryType {
 }
 
 export interface PurchaseType {
+  id: string;
   shop: ShopType;
   type: HistoryType;
   amount: number;

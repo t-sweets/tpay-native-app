@@ -7,6 +7,7 @@ import { PurchaseType, HistoryType } from "app/models/typs";
 
 function Home() {
   const purchase: PurchaseType = {
+    id: "aaaaaa",
     shop: {
       name: "hogehoge"
     },

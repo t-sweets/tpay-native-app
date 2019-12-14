@@ -7,14 +7,21 @@ import { formatDateYMDByLang } from "app/lib/utils";
 import styled from "styled-components/native";
 import Overview from "./Overview";
 import Amount from "./Amount";
+import { Actions } from "react-native-router-flux";
 
 export interface PurcahseItemProps {
   purchase: PurchaseType;
 }
 
 function PurchaseList({ purchase }: PurcahseItemProps) {
+  const pushDetail = () => {
+    Actions.sampleA({
+      id: purchase.id
+    });
+  };
+
   return (
-    <ListContainer>
+    <ListContainer onPress={pushDetail}>
       <ShopContainer>
         <ShopIcon source={require("../../assets/icon.png")} />
         <Overview shopName={purchase.shop.name} date={purchase.timestamp} />
@@ -24,7 +31,7 @@ function PurchaseList({ purchase }: PurcahseItemProps) {
   );
 }
 
-const ListContainer = styled.View`
+const ListContainer = styled.TouchableOpacity`
   width: ${Dimensions.get("screen").width * 0.9};
   height: 80;
   padding: 10px;

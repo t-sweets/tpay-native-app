@@ -6,7 +6,10 @@ function SampleB() {
   return (
     <View style={styles.container}>
       <Text>Replace screen</Text>
-      <Button title={"SampleB"} onPress={Actions.pop}>
+      <Button title={"SampleA"} onPress={Actions.sampleA}>
+        SampleA
+      </Button>
+      <Button title={"Back"} onPress={Actions.pop}>
         Back
       </Button>
     </View>
