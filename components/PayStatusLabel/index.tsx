@@ -1,5 +1,5 @@
 import React from "react";
-import { PayStatusType } from "app/models/typs";
+import { PayStatusType } from "app/models/Purchase";
 import styled from "styled-components/native";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 function PayStatusLabel({ type, allowFontScaling }: Props) {
   const label =
-    type === PayStatusType.Paid
+    type === PayStatusType.Checkout
       ? "支払い完了"
       : type === PayStatusType.Cancel
       ? "キャンセル処理中"
@@ -34,7 +34,7 @@ const Container = styled.View<{ type: PayStatusType }>`
   border-radius: 18;
 
   background-color: ${({ type }) =>
-    type === PayStatusType.Paid
+    type === PayStatusType.Checkout
       ? "#35BB00"
       : type === PayStatusType.Cancel
       ? "#FF9822"

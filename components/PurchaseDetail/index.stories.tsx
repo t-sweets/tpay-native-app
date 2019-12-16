@@ -3,19 +3,20 @@ import { storiesOf } from "@storybook/react-native";
 import styled from "styled-components/native";
 import { number, withKnobs } from "@storybook/addon-knobs";
 import PurchaseDetail from ".";
-import { PayStatusType, PurchaseType } from "app/models/typs";
+import { PayStatusType, PurchaseType } from "app/models/Purchase";
 
 const stories = storiesOf("Compornent", module);
 
 stories.addDecorator(withKnobs).add("PurchaseDetail", () => {
   const purchase: PurchaseType = {
     id: "aaaaaa",
-    shop: {
+    merchant: {
       name: "hogehoge"
     },
-    type: PayStatusType.Paid,
+    type: PayStatusType.Checkout,
     amount: 1000,
-    timestamp: new Date()
+    deleted: false,
+    createdTime: new Date()
   };
 
   return (

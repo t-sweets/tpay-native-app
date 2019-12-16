@@ -1,13 +1,13 @@
 import React from "react";
 import { Dimensions } from "react-native";
 
-import { ShopType, PurchaseType } from "models/typs";
-import { formatDateYMDByLang } from "app/lib/utils";
+import { PurchaseType } from "app/models/Purchase";
 
 import styled from "styled-components/native";
 import Overview from "./Overview";
 import Amount from "./Amount";
 import { Actions } from "react-native-router-flux";
+import { adjustImagePath } from "app/lib/utils";
 
 export interface PurcahseItemProps {
   purchase: PurchaseType;
@@ -19,12 +19,16 @@ function PurchaseList({ purchase }: PurcahseItemProps) {
       uuid: purchase.id
     });
   };
+  const shopIconPath = adjustImagePath(purchase.merchant.icon.image);
 
   return (
     <ListContainer onPress={pushDetail}>
       <ShopContainer>
-        <ShopIcon source={require("../../assets/icon.png")} />
-        <Overview shopName={purchase.shop.name} date={purchase.timestamp} />
+        <ShopIcon source={shopIconPath} />
+        <Overview
+          shopName={purchase.merchant.name}
+          date={purchase.createdTime}
+        />
       </ShopContainer>
       <Amount price={purchase.amount}></Amount>
     </ListContainer>

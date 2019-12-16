@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/native";
-import { PurchaseType } from "app/models/typs";
 
 interface Props {
   uuid: string;
@@ -21,7 +20,7 @@ function DetailTable({ uuid, shopName, amount }: Props) {
       </Row>
       <Row>
         <Cell>支払い金額</Cell>
-        <Cell bold>{`${amount}円`}</Cell>
+        <Cell bold>{`${Math.abs(amount).toLocaleString()}円`}</Cell>
       </Row>
     </Container>
   );
