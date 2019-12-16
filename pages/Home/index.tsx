@@ -3,7 +3,7 @@ import TopCard from "../../components/TopCard";
 import PurchaseList from "../../components/PurchaseList";
 
 import styled from "styled-components/native";
-import { PurchaseType, HistoryType } from "app/models/typs";
+import { PurchaseType, PayStatusType } from "app/models/typs";
 import Wallpeper from "app/components/Wallpaper";
 
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
     shop: {
       name: "hogehoge"
     },
-    type: HistoryType.Paid,
+    type: PayStatusType.Paid,
     amount: 1000,
     timestamp: new Date()
   };

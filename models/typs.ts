@@ -1,4 +1,4 @@
-export enum HistoryType {
+export enum PayStatusType {
   Paid = "Paid",
   Cancel = "Cancel"
 }
@@ -6,7 +6,7 @@ export enum HistoryType {
 export interface PurchaseType {
   id: string;
   shop: ShopType;
-  type: HistoryType;
+  type: PayStatusType;
   amount: number;
   timestamp: Date;
 }
