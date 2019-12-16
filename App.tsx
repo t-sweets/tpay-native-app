@@ -3,9 +3,9 @@ import { Router, Scene, Stack } from "react-native-router-flux";
 import SampleB from "./pages/SampleB";
 import Home from "./pages/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
-import SampleA from "./pages/SampleA";
+import PaymentDetail from "./pages/PaymentDetail";
 
-const STORYBOOK_START = true;
+const STORYBOOK_START = false;
 
 function App() {
   return (
@@ -25,9 +25,9 @@ function App() {
           </Scene>
         </Scene>
         <Scene
-          key="sampleA"
-          path={"/payment/detail/:id/"}
-          component={SampleA}
+          key="paymentDetail"
+          path={"/payment/detail/:uuid/"}
+          component={PaymentDetail}
           back
         />
       </Stack>

@@ -15,8 +15,8 @@ export interface PurcahseItemProps {
 
 function PurchaseList({ purchase }: PurcahseItemProps) {
   const pushDetail = () => {
-    Actions.sampleA({
-      id: purchase.id
+    Actions.paymentDetail({
+      uuid: purchase.id
     });
   };
 
