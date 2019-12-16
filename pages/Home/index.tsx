@@ -3,20 +3,22 @@ import TopCard from "../../components/TopCard";
 import PurchaseList from "../../components/PurchaseList";
 
 import styled from "styled-components/native";
-import { PurchaseType, HistoryType } from "app/models/typs";
+import { PurchaseType, PayStatusType } from "app/models/typs";
+import Wallpeper from "app/components/Wallpaper";
 
 function Home() {
   const purchase: PurchaseType = {
+    id: "aaaaaa",
     shop: {
       name: "hogehoge"
     },
-    type: HistoryType.Paid,
+    type: PayStatusType.Paid,
     amount: 1000,
     timestamp: new Date()
   };
 
   return (
-    <HomeBackground source={require("../../assets/background.png")}>
+    <Wallpeper>
       <HomeContainer>
         <CardContainer>
           <TopCard balance={200} />
@@ -26,14 +28,9 @@ function Home() {
           <PurchaseList purchase={purchase} />
         </HistoryContainer>
       </HomeContainer>
-    </HomeBackground>
+    </Wallpeper>
   );
 }
-
-const HomeBackground = styled.ImageBackground`
-  width: 100%;
-  height: 100%;
-`;
 
 const HomeContainer = styled.View`
   flex-direction: column;

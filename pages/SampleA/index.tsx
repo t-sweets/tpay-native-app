@@ -2,17 +2,16 @@ import React from "react";
 import { Button, Text, View, StyleSheet } from "react-native";
 import { Actions } from "react-native-router-flux";
 
-function SampleA() {
+interface SampleAProps {
+  id: string;
+}
+
+function SampleA({ id }: SampleAProps) {
   return (
     <View style={styles.container}>
-      <Text>Replace screen</Text>
-      <Button
-        title={"hogehogeA"}
-        onPress={() => {
-          Actions.sampleB();
-        }}
-      >
-        toB
+      <Text>{`hogehoge ${id}`}</Text>
+      <Button title={"back"} onPress={Actions.pop}>
+        back
       </Button>
     </View>
   );
