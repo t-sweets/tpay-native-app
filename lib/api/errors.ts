@@ -2,7 +2,7 @@ import { BaseError } from "make-error";
 import { Alert } from "react-native";
 
 export class ApiError<T = unknown> extends BaseError {
-  readonly name = "PixivApiError";
+  readonly name = "TPayApiError";
 
   readonly body: T;
 
