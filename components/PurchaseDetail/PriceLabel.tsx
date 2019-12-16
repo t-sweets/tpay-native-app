@@ -8,7 +8,7 @@ interface Props {
 function PriceLabel({ amount }: Props) {
   return (
     <Price>
-      {amount.toLocaleString()}
+      {Math.abs(amount).toLocaleString()}
       <Unit>{"円"}</Unit>
     </Price>
   );

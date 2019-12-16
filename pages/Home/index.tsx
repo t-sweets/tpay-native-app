@@ -11,7 +11,7 @@ import {
 import styled from "styled-components/native";
 import Wallpeper from "app/components/Wallpaper";
 
-import { PurchaseType, HistoryType } from "app/models/Purchase";
+import { PurchaseType, PayStatusType } from "app/models/Purchase";
 import { thunkActionCreators } from "app/middleware/thunkAction";
 import { RootState } from "app/modules";
 import { ScrollView, RefreshControl } from "react-native";

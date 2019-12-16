@@ -33,21 +33,14 @@ function App() {
               activeTintColor="#04a3e4"
             >
               <Scene
-                key="tabbar"
-                tabs
-                showLabel={false}
-                activeTintColor="#04a3e4"
-              >
-                <Scene
-                  key="home"
-                  iconName="home"
-                  icon={HomeIcon}
-                  hideNavBar
-                  initial
-                  component={Home}
-                />
-                <Scene key="sampleB" hideNavBar component={SampleB} />
-              </Scene>
+                key="home"
+                iconName="home"
+                icon={HomeIcon}
+                hideNavBar
+                initial
+                component={Home}
+              />
+              <Scene key="sampleB" hideNavBar component={SampleB} />
             </Scene>
           </Scene>
           <Scene

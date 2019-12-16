@@ -1,6 +1,6 @@
 import { MerchantType } from "./Marchant";
 
-export enum HistoryType {
+export enum PayStatusType {
   Checkout = "checkout", // 支払い
   Cancel = "Cancel", // 返金
   Deposit = "deposit" // チャージ
@@ -11,6 +11,6 @@ export interface PurchaseType {
   merchant: MerchantType;
   amount: number;
   deleted: boolean;
-  type: HistoryType;
+  type: PayStatusType;
   createdTime: Date;
 }

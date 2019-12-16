@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import styled from "styled-components/native";
 import PayStatusLabel from ".";
-import { PayStatusType } from "app/models/typs";
+import { PayStatusType } from "app/models/Purchase";
 
 const stories = storiesOf("Compornent", module);
 
@@ -10,7 +10,7 @@ stories.add("PayStatusLabel", () => {
   return (
     <>
       <Container>
-        <PayStatusLabel type={PayStatusType.Paid} />
+        <PayStatusLabel type={PayStatusType.Checkout} />
       </Container>
       <Container>
         <PayStatusLabel type={PayStatusType.Cancel} />

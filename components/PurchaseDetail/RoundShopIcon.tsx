@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components/native";
+import { ImageSourcePropType } from "react-native";
 
 interface RoundShopIconProps {
-  source: string;
+  source: ImageSourcePropType;
 }
 
 function RoundShopIcon({ source }: RoundShopIconProps) {
   return (
     <Container>
-      <ShopIcon source={require("../../assets/icon.png")} />
+      <ShopIcon source={source} />
     </Container>
   );
 }
