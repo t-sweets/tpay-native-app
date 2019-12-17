@@ -1,14 +1,17 @@
 import React from "react";
 import { Router, Scene, Stack } from "react-native-router-flux";
-import SampleB from "./pages/SampleB";
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider, connect } from "react-redux";
+import thunk from "redux-thunk";
+
+import { rootReducer } from "app/modules";
+import Account from "./pages/Account";
 import Home from "./pages/Home";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PaymentDetail from "./pages/PaymentDetail";
 
-import { createStore, applyMiddleware, compose } from "redux";
-import { rootReducer } from "app/modules";
-import { Provider, connect } from "react-redux";
-import thunk from "redux-thunk";
+import { default as HomeIcon } from "app/components/icons/Home";
+import { default as PeopleIcon } from "app/components/icons/People";
 
 const STORYBOOK_START = false;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -34,13 +37,19 @@ function App() {
             >
               <Scene
                 key="home"
-                iconName="home"
+                size={28}
                 icon={HomeIcon}
                 hideNavBar
                 initial
                 component={Home}
               />
-              <Scene key="sampleB" hideNavBar component={SampleB} />
+              <Scene
+                key="account"
+                size={28}
+                icon={PeopleIcon}
+                hideNavBar
+                component={Account}
+              />
             </Scene>
           </Scene>
           <Scene
@@ -54,18 +63,5 @@ function App() {
     </Provider>
   );
 }
-
-const HomeIcon = (props: { focused: boolean; iconName: string }) => {
-  return (
-    <Icon
-      style={{
-        color: props.focused ? "#04a3e4" : "#999",
-        lineHeight: 55
-      }}
-      name={props.iconName || "circle"}
-      size={28}
-    />
-  );
-};
 
 export default STORYBOOK_START ? require("./storybook").default : App;
