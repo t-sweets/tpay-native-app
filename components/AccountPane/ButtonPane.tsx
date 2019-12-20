@@ -7,20 +7,20 @@ interface Props {
   size?: string | number;
   width?: string | number;
   label?: string;
-  // action(): void;
+  onPress?(): void;
 }
 
-function ButtonPane({ icon, size, width, label }: Props) {
+function ButtonPane({ icon, size, width, label, onPress }: Props) {
   const Icon = icon;
   return (
-    <Container width={width}>
+    <Container width={width} onPress={onPress}>
       {icon && <Icon size={size} />}
       {label && <Label allowFontScaling={false}>{label}</Label>}
     </Container>
   );
 }
 
-const Container = styled.View<{ width?: number | string }>`
+const Container = styled.TouchableOpacity<{ width?: number | string }>`
   width: ${({ width }) => width ?? `${100 / 3}%`};
   height: 100;
   flex-direction: column;
