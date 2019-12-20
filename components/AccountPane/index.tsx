@@ -30,8 +30,8 @@ function AccountPane({ icon, name }: Props) {
 const Container = styled.View`
   display: flex;
   flex-direction: column;
-
   align-items: center;
+  background-color: #fff;
 `;
 
 const TopContainer = styled.View`

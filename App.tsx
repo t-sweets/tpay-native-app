@@ -13,7 +13,7 @@ import PaymentDetail from "./pages/PaymentDetail";
 import { default as HomeIcon } from "app/components/icons/Home";
 import { default as PeopleIcon } from "app/components/icons/People";
 
-const STORYBOOK_START = true;
+const STORYBOOK_START = false;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const RouterWithRedux = connect()(Router);
