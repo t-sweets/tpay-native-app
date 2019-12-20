@@ -30,7 +30,7 @@ export default function PurchaseDetail({ purchase }: PurchaseDetailProps) {
           amount={purchase.amount}
         />
       </DetailBoard>
-      <RoundShopIcon source={adjustImagePath(purchase.merchant.icon.image)} />
+      <RoundShopIcon source={adjustImagePath(purchase.merchant.icon?.image)} />
     </Container>
   );
 }

@@ -1,5 +1,5 @@
 export const adjustImagePath = (
-  path: string,
+  path?: string,
   defaultImage: any = require("../../assets/icon.png")
 ) => {
   return path

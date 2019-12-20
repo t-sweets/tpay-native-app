@@ -38,7 +38,13 @@ const Row = styled.View`
   justify-content: space-between;
 `;
 
-const Cell = styled.Text<{ bold?: boolean }>`
+const Cell = ({ children, bold }: { children: string; bold?: boolean }) => (
+  <CellText allowFontScaling={false} bold={bold}>
+    {children}
+  </CellText>
+);
+
+const CellText = styled.Text<{ bold?: boolean }>`
   font-size: 10px;
   font-weight: ${({ bold }) => (bold ? "700" : "400")};
 `;

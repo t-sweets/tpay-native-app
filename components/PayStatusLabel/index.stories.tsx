@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import PayStatusLabel from ".";
 import { PayStatusType } from "app/models/Purchase";
 
-const stories = storiesOf("Compornent", module);
+const stories = storiesOf("Component", module);
 
 stories.add("PayStatusLabel", () => {
   return (
