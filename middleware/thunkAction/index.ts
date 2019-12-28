@@ -2,6 +2,7 @@ import { Action, AnyAction } from "redux";
 import { ThunkAction as ReduxThunkAction } from "redux-thunk";
 
 import { fetchTransactions } from "./FetchTransactions";
+import { fetchProfile } from "./FetchProfile";
 
 import { RootState } from "modules";
 import ApiClientImpl, { ApiClient } from "app/lib/api";
@@ -15,7 +16,8 @@ export type ThunkActionType = ReduxThunkAction<
 >;
 
 export const thunkActionCreators = {
-  fetchTransactions
+  fetchTransactions,
+  fetchProfile
 };
 
 export const getToken = (root: Pick<RootState, "authToken">) =>

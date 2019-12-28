@@ -1,14 +1,23 @@
 import React from "react";
-import { Button, Text, View, StyleSheet } from "react-native";
-import { Actions } from "react-native-router-flux";
-import { default as HomeIcon } from "app/components/icons/Home";
+import { useEffect, useDispatch, useSelector } from "app/lib/hooks";
+
 import AccountPane from "app/components/AccountPane";
 import Wallpeper from "app/components/Wallpaper";
+import { thunkActionCreators } from "app/middleware/thunkAction";
+import { RootState } from "app/modules";
+import { adjustImagePath } from "app/lib/utils";
 
 function Account() {
+  const { profile } = useSelector(
+    (state: Pick<RootState, "profile">) => state.profile
+  );
+
   return (
     <Wallpeper>
-      <AccountPane name={"hogehoge"} />
+      <AccountPane
+        name={profile?.displayName ?? profile?.username ?? ""}
+        icon={adjustImagePath(profile?.icon?.image)}
+      />
     </Wallpeper>
   );
 }

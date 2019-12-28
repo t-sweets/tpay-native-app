@@ -34,8 +34,9 @@ function Home() {
   }, [status]);
 
   useEffect(() => {
+    dispatch(thunkActionCreators.fetchProfile());
     dispatch(thunkActionCreators.fetchTransactions());
-  }, []);
+  });
 
   return (
     <Wallpeper>

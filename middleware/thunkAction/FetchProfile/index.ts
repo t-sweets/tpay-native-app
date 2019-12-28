@@ -8,32 +8,22 @@ import { apiErrorAlert } from "app/lib/api/errors";
 
 import { actionCreator } from "app/modules";
 
-export const fetchTransactions = (): ThunkActionType => async (
+export const fetchProfile = (): ThunkActionType => async (
   dispatch: Dispatch<Action>
 ) => {
   const client = getAuthClient(
     "token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMDFEOTRWSFdNSDhLNUFFNzA0S0hWVzBBMkIiLCJ1c2VybmFtZSI6InNobyIsImV4cCI6MTU3NjA3OTIxMSwiZW1haWwiOiJzc2tteTEwMjQueUBnbWFpbC5jb20ifQ.ejxUAPKmgJhmjdHy6FcpdCARQfP-sJ4krBGVeO9dhz8"
   );
   try {
-    dispatch(actionCreator.prepareGetTransactions());
+    const apiData = await getProfile(client);
+    const profile = types.applyApiDataToProfileType(apiData);
 
-    const apiData = await getTransactions(client);
-    const transactions = apiData.map(rowData =>
-      types.applyApiDataToPurchaseType(rowData)
-    );
-
-    dispatch(
-      actionCreator.setTransactionsCreator({
-        transactions: transactions.reverse()
-      })
-    );
+    dispatch(actionCreator.setProfileCreator({ profile }));
   } catch (e) {
     apiErrorAlert(e.toString());
   }
 };
 
-export function getTransactions(
-  client: ApiClient
-): Promise<types.TransactionApiData[]> {
-  return client.get<types.TransactionApiData[]>("/api/v1/transactions/", {});
+export function getProfile(client: ApiClient): Promise<types.ProfileApiData> {
+  return client.get<types.ProfileApiData>("/api/v1/accounts/profile/", {});
 }

@@ -1,6 +1,6 @@
 import { IconType } from "../IconType";
 
-export interface Profile {
+export interface ProfileType {
   username: string;
   email: string;
   displayName: string | null;

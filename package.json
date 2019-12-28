@@ -8,8 +8,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "prestorybook": "rnstl",
-    "storybook": "start-storybook -p 7007",
-    "generate:storytest": "rnstl"
+    "storybook": "start-storybook -p 7007"
   },
   "config": {
     "react-native-storybook-loader": {
