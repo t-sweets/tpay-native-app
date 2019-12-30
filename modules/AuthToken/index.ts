@@ -16,14 +16,21 @@ function setAuthToken(payload: Payload): SetAuthTokenAction {
 
 export type Action = SetAuthTokenAction;
 
-export type State = string;
+export type State = {
+  authToken: string;
+};
 
-export const initialState = "";
+export const initialState = {
+  authToken: ""
+};
 
 export function reducer(state: State = initialState, action: Action) {
   switch (action.type) {
     case "SET_AUTH_TOKEN":
-      return action.payload.authToken ?? "";
+      return {
+        ...state,
+        authToken: action.payload.authToken ?? ""
+      };
     default:
       return state;
   }

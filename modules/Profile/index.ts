@@ -7,7 +7,7 @@ export type State = {
   profile: ProfileType | null;
 };
 
-export const initialState = {
+export const initialState: State = {
   profile: null
 };
 

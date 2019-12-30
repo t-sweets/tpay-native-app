@@ -13,7 +13,7 @@ interface Props {
 }
 
 function PaymentDetail({ uuid }: Props) {
-  const { data: transactions } = useSelector(
+  const transactions = useSelector(
     (state: Pick<RootState, "transactions">) => state.transactions
   );
 

@@ -11,7 +11,6 @@ import {
 import styled from "styled-components/native";
 import Wallpeper from "app/components/Wallpaper";
 
-import { PurchaseType, PayStatusType } from "app/models/Purchase";
 import { thunkActionCreators } from "app/middleware/thunkAction";
 import { RootState } from "app/modules";
 import { ScrollView, RefreshControl } from "react-native";
@@ -20,7 +19,7 @@ import { RequestStatus } from "app/modules/Transactions/type";
 function Home() {
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const { data: transactions, status } = useSelector(
+  const transactions = useSelector(
     (state: Pick<RootState, "transactions">) => state.transactions
   );
   const dispatch = useDispatch();
@@ -29,9 +28,9 @@ function Home() {
     dispatch(thunkActionCreators.fetchTransactions());
   }, [refreshing]);
 
-  useEffect(() => {
-    setRefreshing(status === RequestStatus.Requesting);
-  }, [status]);
+  // useEffect(() => {
+  //   setRefreshing(status === RequestStatus.Requesting);
+  // }, [status]);
 
   useEffect(() => {
     dispatch(thunkActionCreators.fetchProfile());

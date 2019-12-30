@@ -4,16 +4,12 @@ import * as Transactions from "./Transactions";
 import * as AuthToken from "./AuthToken";
 import * as Profile from "./Profile";
 
-export interface RootState {
-  authToken: AuthToken.State;
-  transactions: Transactions.State;
-  profile: Profile.State;
-}
+export type RootState = AuthToken.State & Transactions.State & Profile.State;
 
 export const initialState = {
-  authToken: AuthToken.initialState,
-  transactions: Transactions.initialState,
-  profile: Profile.initialState
+  ...AuthToken.initialState,
+  ...Transactions.initialState,
+  ...Profile.initialState
 };
 
 export const rootReducer = combineReducers({

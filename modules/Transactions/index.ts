@@ -8,30 +8,22 @@ import {
 } from "./PrepareStatus";
 import { TransactionsType, RequestStatus } from "./type";
 
-export type Action = SetTransactionsAction | PrepareGetTransactionsAction;
+export type Action = SetTransactionsAction;
 
 export type State = {
-  status: RequestStatus;
-  data: TransactionsType;
+  transactions: TransactionsType;
 };
 
-export const initialState = {
-  status: RequestStatus.None,
-  data: []
+export const initialState: State = {
+  transactions: []
 };
 
 export function reducer(state: State = initialState, action: Action) {
   switch (action.type) {
-    case "PREPARE_GET_TRANSACTIONS":
-      return {
-        ...state,
-        status: RequestStatus.Requesting
-      };
     case "SET_TRANSACTIONS":
       return {
         ...state,
-        status: RequestStatus.Success,
-        data: action.payload.transactions
+        transactions: action.payload.transactions
       };
     default:
       return state;
@@ -39,6 +31,5 @@ export function reducer(state: State = initialState, action: Action) {
 }
 
 export const actionCreators = {
-  prepareGetTransactions,
   setTransactionsCreator
 };
